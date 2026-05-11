@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="76" viewBox="0 0 280 76" role="img" aria-labelledby="title desc">
+  <title id="title">Smart Job Tracker</title>
+  <desc id="desc">Modern logo for the Smart Job Application Tracking system</desc>
+  <rect width="280" height="76" rx="18" fill="#f3f4f6"/>
+  <rect x="14" y="12" width="52" height="52" rx="15" fill="#009bd3"/>
+  <path d="M28 31h24v17a5 5 0 0 1-5 5H33a5 5 0 0 1-5-5V31Z" fill="#ffffff"/>
+  <path d="M34 31v-4.5A4.5 4.5 0 0 1 38.5 22h3A4.5 4.5 0 0 1 46 26.5V31" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M33 40h14" stroke="#009bd3" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="55" cy="52" r="10" fill="#111827"/>
+  <path d="M50.5 52.5l3 3 6-7" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="78" y="34" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800">Smart Job</text>
+  <text x="78" y="55" fill="#009bd3" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">Tracker</text>
+  <rect x="210" y="22" width="52" height="32" rx="16" fill="#e0f7fc"/>
+  <text x="224" y="43" fill="#009bd3" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800">SJT</text>
+</svg>

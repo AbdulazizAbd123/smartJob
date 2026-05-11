@@ -1,0 +1,41 @@
+name: smartjobapp
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: smartjobs-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: smartjobdb
+    volumes:
+      - mongo-data:/data/db
+
+  server:
+    build: ./server
+    container_name: smartjobs-server
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      CLIENT_URL: http://localhost:3000
+      MONGO_URL: mongodb://mongo:27017/smartjobdb
+    depends_on:
+      - mongo
+
+  client:
+    build: ./client
+    container_name: smartjobs-client
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_SERVER_URL: http://localhost:3001
+      CHOKIDAR_USEPOLLING: "true"
+    depends_on:
+      - server
+
+volumes:
+  mongo-data:

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-labelledby="title">
+  <title id="title">Applicant profile picture</title>
+  <rect width="180" height="180" rx="90" fill="#d9d9d9"/>
+  <circle cx="90" cy="62" r="31" fill="#009bd3"/>
+  <path d="M42 146c8-30 26-46 48-46s40 16 48 46" fill="#009bd3"/>
+  <rect x="58" y="118" width="64" height="40" rx="8" fill="#243f78"/>
+  <path d="M75 118v-7c0-8 6-13 15-13s15 5 15 13v7" fill="none" stroke="#243f78" stroke-width="8" stroke-linecap="round"/>
+  <path d="M73 137h34" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+</svg>

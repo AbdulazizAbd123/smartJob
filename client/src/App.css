@@ -1,0 +1,906 @@
+.appContainer {
+  min-height: 100vh;
+  padding: 0;
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000000;
+}
+
+.appContainer > .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.container,
+.container-fluid,
+.row {
+  --bs-gutter-x: 0;
+}
+
+.homePage > .row,
+.pageSection > .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #00a6d6;
+  text-decoration: none;
+}
+
+.header {
+  width: 100%;
+  height: 120px;
+  padding: 28px 20px;
+  display: flex;
+  align-items: flex-start;
+  background: #00d9df;
+}
+
+.brandLink {
+  width: 280px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d9d9d9;
+  border-radius: 15px;
+  color: #000000;
+  font-size: 24px;
+  overflow: hidden;
+}
+
+.brandLink img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.figmaNav {
+  margin-left: auto;
+  margin-top: 48px;
+  margin-right: 70px;
+  display: flex;
+  gap: 48px;
+}
+
+.figmaNav a {
+  color: #000000;
+  font-size: 24px;
+}
+
+.main {
+  min-height: calc(100vh - 210px);
+  background: #ffffff;
+}
+
+.footer {
+  position: relative;
+  min-height: 220px;
+  width: 100%;
+  padding: 42px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #243f78;
+  color: #ffffff;
+}
+
+.footerAddress p {
+  margin: 0 0 14px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.footerBrand {
+  position: absolute;
+  right: 28px;
+  bottom: 20px;
+  text-align: right;
+}
+
+.footerBrand p {
+  margin: 0;
+  color: #ffffff;
+}
+
+.footerArabic {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.footerEnglish {
+  margin-top: 4px !important;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.footerArabicHorizon {
+  margin-top: 28px !important;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.footerHorizon {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.footerCopyright {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.homePage {
+  padding: 0;
+  background: #ffffff;
+}
+
+.landingIntro {
+  min-height: 250px;
+  align-items: center;
+  background: #d9d9d9;
+  padding: 24px 44px;
+}
+
+.landingText {
+  padding-top: 22px;
+}
+
+.landingText h2 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.landingText p {
+  max-width: 420px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.landingImageCol {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.landingTopImage {
+  width: 820px;
+  max-width: 100%;
+  height: 165px;
+  object-fit: cover;
+}
+
+.featuresTitle {
+  padding: 16px 40px 10px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.featuresTitle h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.featuresTitle p {
+  margin: 2px 0 0;
+  font-size: 13px;
+}
+
+.figmaCardRow,
+.figmaCardGrid {
+  padding: 0 54px;
+  background: #ffffff;
+}
+
+.figmaCardRow .col-md-3,
+.figmaCardGrid .col-md-3 {
+  padding-left: 26px;
+  padding-right: 26px;
+}
+
+.figmaJobCard {
+  width: 100%;
+  min-height: 135px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  background: #d9d9d9;
+  border-radius: 16px 16px 0 0;
+  text-align: center;
+}
+
+.figmaJobTitle {
+  min-height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  color: #000000;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.figmaCardButton {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 0;
+  background: #a5d9ef !important;
+  color: #000000 !important;
+  font-size: 16px;
+}
+
+.landingBottomImage {
+  min-height: 320px;
+  margin-top: 12px;
+  padding-top: 185px;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+}
+
+.landingBottomImage h2 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 400;
+}
+
+.landingBottomImage p {
+  margin: 2px auto 0;
+  max-width: 1200px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.pageSection {
+  width: 100%;
+  padding: 0;
+  background: #ffffff;
+}
+
+.loginRow,
+.formrow {
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authPanel,
+.registerPanel {
+  margin: 24px auto;
+  background: #d9d9d9;
+  border-radius: 16px;
+  border: 0;
+}
+
+.authPanel {
+  width: 560px;
+  min-height: 640px;
+  padding: 106px 40px 38px;
+}
+
+.authPanel h1,
+.registerPanel h1 {
+  margin: 0 0 28px;
+  color: #000000;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.authPanel p,
+.registerPanel p {
+  margin: 0 0 34px;
+  color: #000000;
+  text-align: center;
+  font-size: 16px;
+}
+
+.authPanel label,
+.registerPanel label {
+  display: block;
+  margin-bottom: 8px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.form-control {
+  width: 100%;
+  height: 43px;
+  background: #adadad;
+  border: 0;
+  border-radius: 4px;
+  color: #000000;
+  font-size: 16px;
+}
+
+.authPanel .mb-3 {
+  margin-bottom: 36px !important;
+}
+
+.figmaSubmit,
+.addApplicationButton,
+.saveChangesButton {
+  width: 100%;
+  height: 45px;
+  border: 0 !important;
+  border-radius: 13px !important;
+  background: #009bd3 !important;
+  color: #ffffff !important;
+  font-size: 16px;
+}
+
+.saveChangesButton {
+  background: #198754 !important;
+}
+
+.authPanel .figmaSubmit {
+  margin-top: 12px;
+}
+
+.authLinkText {
+  margin-top: 34px !important;
+  font-size: 16px !important;
+}
+
+.registerPanel {
+  width: 650px;
+  min-height: 650px;
+  padding: 22px 50px 34px;
+}
+
+.registerPanel h1 {
+  margin-bottom: 28px;
+}
+
+.registerPanel p {
+  margin-bottom: 28px;
+}
+
+.roleSwitch {
+  display: flex;
+  justify-content: center;
+  gap: 52px;
+  margin-bottom: 22px;
+}
+
+.roleSwitch button {
+  width: 160px;
+  height: 43px;
+  border: 0;
+  border-radius: 13px;
+  background: #79cde8;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.roleSwitch button.active {
+  background: #009bd3;
+}
+
+.registerPanel .mb-3 {
+  margin-bottom: 12px !important;
+}
+
+.registerPanel .form-control {
+  height: 39px;
+}
+
+.error {
+  min-height: 16px;
+  margin: 3px 0 0 !important;
+  color: #b00000 !important;
+  text-align: left !important;
+  font-size: 12px !important;
+}
+
+.figmaDashboard {
+  min-height: 760px;
+  padding: 18px 45px 60px;
+  background: #ffffff;
+}
+
+.dashboardHeader {
+  min-height: 170px;
+  align-items: center;
+}
+
+.profileCircleCol {
+  max-width: 230px;
+}
+
+.profilePictureBox {
+  width: 180px;
+  margin-left: 18px;
+  text-align: center;
+}
+
+.profileCircle {
+  width: 155px;
+  height: 155px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #d9d9d9;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.profileCircle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profileFileInput {
+  display: none;
+}
+
+.profileUploadButton {
+  min-width: 112px;
+  min-height: 28px;
+  margin-top: 10px;
+  padding: 5px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #009bd3;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.dashboardWelcome {
+  padding-top: 6px;
+}
+
+.dashboardWelcome h1 {
+  margin: 0 0 6px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.figmaLine {
+  height: 1px;
+  width: 100%;
+  background: #000000;
+}
+
+.dashboardTabs {
+  margin-top: -25px;
+  margin-bottom: 70px;
+}
+
+.dashboardTabs .col {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.dashboardTabs span,
+.dashboardTabs button {
+  width: 300px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 13px;
+  background: #79d3ee;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.dashboardTabs span:nth-child(2) {
+  background: #79d3ee;
+}
+
+.dashboardTabs span:first-child {
+  background: #009bd3;
+}
+
+.dashboardTabs button.activeTab {
+  background: #009bd3;
+}
+
+.figmaCardGrid {
+  row-gap: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.appliedGrid,
+.applicantCards {
+  margin-top: 0;
+}
+
+.applicantStatusNotice {
+  margin: -12px 20px 22px;
+  padding: 12px 18px;
+  background: #a5d9ef;
+  color: #000000;
+  font-size: 16px;
+}
+
+.applicationStatusText {
+  margin: 10px 8px 4px;
+  color: #000000;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.userCard {
+  min-height: 160px;
+}
+
+.userCard p {
+  margin: 0 8px 10px;
+  font-size: 13px;
+}
+
+.miniActions {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+}
+
+.miniActions .btn,
+.userCard .btn {
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.addButtonCol {
+  max-width: 470px;
+}
+
+.headerActionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.companyDesignArea {
+  margin-top: -16px;
+  margin-bottom: 42px;
+  padding-left: 240px;
+}
+
+.companyDesignArea label,
+.figmaUpdateForm label {
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.figmaInput,
+.figmaLineInput {
+  width: 100%;
+  min-height: 32px;
+  border: 0;
+  border-bottom: 1px solid #000000;
+  border-radius: 0;
+  background: transparent;
+  color: #000000;
+  font-size: 15px;
+}
+
+.descriptionLine {
+  height: 62px;
+  resize: none;
+}
+
+.hiddenJobFields {
+  display: none;
+}
+
+.companyFormButtons {
+  display: none;
+}
+
+.editCompanyFormButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  max-width: 395px;
+}
+
+.editCompanyFormButtons .saveChangesButton,
+.editCompanyFormButtons .cancelEditButton {
+  height: 38px;
+  border-radius: 8px !important;
+  font-size: 15px;
+}
+
+.editCompanyFormButtons .saveChangesButton {
+  flex: 1;
+}
+
+.editCompanyFormButtons .cancelEditButton {
+  width: 125px;
+  background: #ffffff !important;
+  color: #5b6570 !important;
+  border: 1px solid #5b6570 !important;
+}
+
+.updateProfileArea {
+  margin: -35px 0 40px;
+  padding-left: 250px;
+  padding-right: 45px;
+}
+
+.figmaUpdateForm {
+  padding: 22px 26px 10px;
+  background: #f7f7f7;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+}
+
+.companyUpdateForm {
+  margin-bottom: 38px;
+}
+
+.updateButtonCol {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 16px;
+}
+
+.figmaUpdateForm .figmaSubmit {
+  height: 38px;
+}
+
+.companyJobs {
+  margin-top: 22px;
+}
+
+.jobListTitle {
+  margin: 4px 20px 12px;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.emptyListText {
+  margin: 0;
+  padding: 18px;
+  color: #000000;
+  background: #d9d9d9;
+  text-align: center;
+}
+
+.applicantCards .form-control {
+  height: 32px;
+  margin: 5px 8px;
+  width: calc(100% - 16px);
+  background: #eeeeee;
+  border: 1px solid #cccccc;
+  font-size: 12px;
+}
+
+.aboutPage {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 25px;
+}
+
+.aboutPage h1,
+.aboutPage > p {
+  text-align: center;
+}
+
+.projectInfo,
+.developerList {
+  margin: 22px 0;
+  padding: 22px;
+  background: #d9d9d9;
+  border-radius: 16px;
+}
+
+.developerList {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.userImage {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contentBlock {
+  margin-bottom: 24px;
+  padding: 22px;
+  background: #d9d9d9;
+  border-radius: 16px;
+}
+
+.locationBox {
+  padding: 12px 0;
+}
+
+.locationServiceBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.locationServiceBox .btn {
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.locationServiceBox span {
+  font-size: 13px;
+  color: #000000;
+}
+
+.adminLocationArea {
+  margin: -18px 0 26px;
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.registerPanel .locationServiceBox {
+  padding-top: 0;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #a5d9ef;
+  color: #000000;
+}
+
+.actionCell {
+  display: flex;
+  gap: 8px;
+}
+
+.mutedText,
+.smalltext,
+.demoText,
+.eyebrow {
+  color: #000000;
+}
+
+@media (max-width: 900px) {
+  .header {
+    height: auto;
+    padding: 16px;
+    align-items: center;
+  }
+
+  .brandLink {
+    width: 150px;
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .figmaNav {
+    margin: 0 0 0 auto;
+    gap: 18px;
+  }
+
+  .figmaNav a {
+    font-size: 16px;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+    min-height: auto;
+    padding: 28px 18px 220px;
+  }
+
+  .footerAddress p {
+    font-size: 14px;
+  }
+
+  .footerBrand {
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .footerArabic {
+    font-size: 15px;
+  }
+
+  .footerEnglish {
+    font-size: 11px;
+  }
+
+  .footerArabicHorizon {
+    font-size: 18px;
+  }
+
+  .footerHorizon {
+    font-size: 17px;
+  }
+
+  .footerCopyright {
+    bottom: 14px;
+    padding: 0 18px;
+    font-size: 13px;
+  }
+
+  .landingIntro,
+  .featuresTitle,
+  .figmaCardRow,
+  .figmaCardGrid,
+  .companyDesignArea,
+  .updateProfileArea {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .landingImageCol {
+    justify-content: center;
+    margin-top: 18px;
+  }
+
+  .authPanel,
+  .registerPanel {
+    width: 94%;
+  }
+
+  .roleSwitch {
+    gap: 16px;
+  }
+
+  .profileCircleCol,
+  .addButtonCol {
+    max-width: 100%;
+  }
+
+  .profilePictureBox {
+    margin: 0 auto 18px;
+  }
+
+  .companyDesignArea,
+  .updateProfileArea {
+    margin-top: 10px;
+  }
+
+  .dashboardTabs {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+}

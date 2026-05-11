@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="190" viewBox="0 0 300 190" role="img" aria-labelledby="title desc">
+  <title id="title">University of Technology and Applied Sciences</title>
+  <desc id="desc">University of Technology and Applied Sciences Broad Horizons logo</desc>
+  <g fill="#ffffff">
+    <text x="124" y="34" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">جامعة التقنية</text>
+    <text x="124" y="51" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">والعلوم التطبيقية</text>
+    <text x="124" y="70" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">University of Technology</text>
+    <text x="124" y="83" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">and Applied Sciences</text>
+  </g>
+  <g transform="translate(197 10)">
+    <path d="M31 0 61 30v50c0 28-20 50-48 50s-48-22-48-50V30h31v50c0 11 7 20 17 20 10 0 18-9 18-20V0Z" fill="#ffffff"/>
+    <path d="M31 0v100L4 73V30h-39L31 0Z" fill="#243f78"/>
+  </g>
+  <g fill="#ffffff">
+    <text x="135" y="135" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">آفاق واسعة</text>
+    <text x="135" y="166" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800">BROAD HORIZONS</text>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-labelledby="title">
+  <title id="title">Company profile picture</title>
+  <rect width="180" height="180" rx="90" fill="#d9d9d9"/>
+  <rect x="45" y="54" width="90" height="92" rx="10" fill="#243f78"/>
+  <rect x="62" y="71" width="16" height="16" rx="2" fill="#ffffff"/>
+  <rect x="82" y="71" width="16" height="16" rx="2" fill="#ffffff"/>
+  <rect x="102" y="71" width="16" height="16" rx="2" fill="#ffffff"/>
+  <rect x="62" y="94" width="16" height="16" rx="2" fill="#ffffff"/>
+  <rect x="82" y="94" width="16" height="16" rx="2" fill="#ffffff"/>
+  <rect x="102" y="94" width="16" height="16" rx="2" fill="#ffffff"/>
+  <rect x="78" y="119" width="24" height="27" rx="3" fill="#009bd3"/>
+  <path d="M45 54 90 31l45 23" fill="none" stroke="#009bd3" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

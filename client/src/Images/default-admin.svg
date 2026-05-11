@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-labelledby="title">
+  <title id="title">Admin profile picture</title>
+  <rect width="180" height="180" rx="90" fill="#d9d9d9"/>
+  <circle cx="90" cy="72" r="28" fill="#243f78"/>
+  <path d="M45 145c7-27 24-42 45-42s38 15 45 42" fill="#243f78"/>
+  <path d="M90 31 122 44v25c0 28-15 50-32 59-17-9-32-31-32-59V44l32-13Z" fill="none" stroke="#009bd3" stroke-width="7" stroke-linejoin="round"/>
+  <path d="m78 76 9 9 17-23" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

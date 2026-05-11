@@ -1,11 +1,11 @@
-import { Button, Col, Container, Form, FormGroup, Label, Row } from "reactstrap";
+import { Button, Col, Container, Form, Row } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { deleteUser, getUsers, updateUser } from "../Features/UserSlice";
 import ProfilePicture from "./ProfilePicture";
-import LocationControl from "./LocationControl";
+import Location from "./Location";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,9 @@ const AdminPage = () => {
     location: "",
     latitude: "",
     longitude: "",
+    place: "",
+    country: "",
+    accuracy: "",
   });
 
   useEffect(() => {
@@ -34,6 +37,9 @@ const AdminPage = () => {
       location: user.location || "",
       latitude: user.latitude || "",
       longitude: user.longitude || "",
+      place: user.place || "",
+      country: user.country || "",
+      accuracy: user.accuracy || "",
     });
   }, [dispatch, navigate, user]);
 
@@ -57,11 +63,11 @@ const AdminPage = () => {
     }
   };
 
-  const handleAdminLocationChange = ({ latitude, longitude }) => {
+  const handleAdminLocationChange = (locationData) => {
     setadminLocation({
       ...adminLocation,
-      latitude,
-      longitude,
+      ...locationData,
+      location: locationData.location || adminLocation.location,
     });
   };
 
@@ -72,7 +78,11 @@ const AdminPage = () => {
       (adminLocation.latitude || "").toString() ===
         (user.latitude || "").toString() &&
       (adminLocation.longitude || "").toString() ===
-        (user.longitude || "").toString();
+        (user.longitude || "").toString() &&
+      (adminLocation.place || "") === (user.place || "") &&
+      (adminLocation.country || "") === (user.country || "") &&
+      (adminLocation.accuracy || "").toString() ===
+        (user.accuracy || "").toString();
 
     if (locationUnchanged) {
       alert("No changes have been made.");
@@ -89,6 +99,11 @@ const AdminPage = () => {
             : undefined,
           longitude: adminLocation.longitude
             ? Number(adminLocation.longitude)
+            : undefined,
+          place: adminLocation.place,
+          country: adminLocation.country,
+          accuracy: adminLocation.accuracy
+            ? Number(adminLocation.accuracy)
             : undefined,
         })
       ).unwrap();
@@ -138,26 +153,13 @@ const AdminPage = () => {
         <Col>
           <Form className="figmaUpdateForm" onSubmit={handleSaveAdminLocation}>
             <Row>
-              <Col md={4}>
-                <FormGroup>
-                  <Label for="adminLocation">Location</Label>
-                  <input
-                    id="adminLocation"
-                    className="figmaInput"
-                    value={adminLocation.location}
-                    onChange={(event) =>
-                      setadminLocation({
-                        ...adminLocation,
-                        location: event.target.value,
-                      })
-                    }
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={5}>
-                <LocationControl
+              <Col md={9}>
+                <Location
                   latitude={adminLocation.latitude}
                   longitude={adminLocation.longitude}
+                  place={adminLocation.place}
+                  country={adminLocation.country}
+                  accuracy={adminLocation.accuracy}
                   onLocationChange={handleAdminLocationChange}
                 />
               </Col>

@@ -18,14 +18,9 @@ import { useState } from "react";
 import { registerUser } from "../Features/UserSlice";
 
 import { useNavigate } from "react-router-dom";
-import LocationControl from "./LocationControl";
 
 const Register = () => {
   const [role, setrole] = useState("applicant");
-  const [coordinates, setcoordinates] = useState({
-    latitude: "",
-    longitude: "",
-  });
 
   const {
     register,
@@ -48,15 +43,6 @@ const Register = () => {
     setValue("role", selectedRole);
   };
 
-  const handleRegisterLocationChange = ({ latitude, longitude }) => {
-    setcoordinates({
-      latitude,
-      longitude,
-    });
-    setValue("latitude", latitude);
-    setValue("longitude", longitude);
-  };
-
   // Handle form submission
   const onSubmit = async (data) => {
     try {
@@ -73,8 +59,6 @@ const Register = () => {
           data.location || (data.role === "company" ? "Not provided" : ""),
         contactNumber:
           data.role === "company" ? "92874721" : data.contactNumber,
-        latitude: data.latitude ? Number(data.latitude) : undefined,
-        longitude: data.longitude ? Number(data.longitude) : undefined,
       };
 
       await dispatch(registerUser(userData)).unwrap();
@@ -95,8 +79,6 @@ const Register = () => {
               <p>Join Job Tracker to manage your applications</p>
 
               <input type="hidden" {...register("role")} />
-              <input type="hidden" {...register("latitude")} />
-              <input type="hidden" {...register("longitude")} />
 
               <div className="roleSwitch">
                 <button
@@ -202,23 +184,6 @@ const Register = () => {
                   </FormGroup>
                 </>
               )}
-
-              <FormGroup>
-                <Label for="location">Location</Label>
-                <input
-                  type="text"
-                  id="location"
-                  className="form-control"
-                  placeholder="Enter location or use browser location"
-                  {...register("location")}
-                />
-                <p className="error">{errors.location?.message}</p>
-              </FormGroup>
-              <LocationControl
-                latitude={coordinates.latitude}
-                longitude={coordinates.longitude}
-                onLocationChange={handleRegisterLocationChange}
-              />
 
               <Button color="primary" className="figmaSubmit" type="submit">
                 Create Account

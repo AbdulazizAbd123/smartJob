@@ -19,7 +19,7 @@ import {
   updateApplication,
 } from "../Features/ApplicationSlice";
 import ProfilePicture from "./ProfilePicture";
-import LocationControl from "./LocationControl";
+import Location from "./Location";
 
 const emptyJob = {
   title: "",
@@ -60,6 +60,9 @@ const CompanyPage = () => {
     contactNumber: "",
     latitude: "",
     longitude: "",
+    place: "",
+    country: "",
+    accuracy: "",
   });
 
   useEffect(() => {
@@ -81,6 +84,9 @@ const CompanyPage = () => {
       contactNumber: user.contactNumber || "",
       latitude: user.latitude || "",
       longitude: user.longitude || "",
+      place: user.place || "",
+      country: user.country || "",
+      accuracy: user.accuracy || "",
     });
     setjobData((currentData) => ({
       ...currentData,
@@ -104,11 +110,11 @@ const CompanyPage = () => {
     });
   };
 
-  const handleCompanyLocationChange = ({ latitude, longitude }) => {
+  const handleCompanyLocationChange = (locationData) => {
     setcompanyData({
       ...companyData,
-      latitude,
-      longitude,
+      ...locationData,
+      location: locationData.location || companyData.location,
     });
   };
 
@@ -121,7 +127,10 @@ const CompanyPage = () => {
       sameText(companyData.location, user.location) &&
       sameText(companyData.contactNumber, user.contactNumber) &&
       sameText(companyData.latitude, user.latitude) &&
-      sameText(companyData.longitude, user.longitude);
+      sameText(companyData.longitude, user.longitude) &&
+      sameText(companyData.place, user.place) &&
+      sameText(companyData.country, user.country) &&
+      sameText(companyData.accuracy, user.accuracy);
 
     if (companyUnchanged) {
       alert(noChangesMessage);
@@ -136,6 +145,9 @@ const CompanyPage = () => {
           latitude: companyData.latitude ? Number(companyData.latitude) : undefined,
           longitude: companyData.longitude
             ? Number(companyData.longitude)
+            : undefined,
+          accuracy: companyData.accuracy
+            ? Number(companyData.accuracy)
             : undefined,
         })
       ).unwrap();
@@ -410,19 +422,12 @@ const CompanyPage = () => {
             </Row>
             <Row>
               <Col md={4}>
-                <FormGroup>
-                  <Label for="companyLocation">Location</Label>
-                  <input
-                    id="companyLocation"
-                    name="location"
-                    className="figmaInput"
-                    value={companyData.location}
-                    onChange={handleCompanyChange}
-                  />
-                </FormGroup>
-                <LocationControl
+                <Location
                   latitude={companyData.latitude}
                   longitude={companyData.longitude}
+                  place={companyData.place}
+                  country={companyData.country}
+                  accuracy={companyData.accuracy}
                   onLocationChange={handleCompanyLocationChange}
                 />
               </Col>

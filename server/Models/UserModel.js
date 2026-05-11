@@ -44,6 +44,15 @@ const UserSchema = mongoose.Schema(
     longitude: {
       type: Number,
     },
+    place: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    accuracy: {
+      type: Number,
+    },
     profileImage: {
       type: String,
     },

@@ -332,6 +332,9 @@ app.post("/registerUser", async (req, res) => {
       contactNumber: req.body.contactNumber,
       latitude: req.body.latitude,
       longitude: req.body.longitude,
+      place: req.body.place,
+      country: req.body.country,
+      accuracy: req.body.accuracy,
     });
     await user.save();
     res.send({ user: removePassword(user), msg: "Added." });

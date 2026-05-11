@@ -3,8 +3,6 @@ import {
   Col,
   Container,
   Form,
-  FormGroup,
-  Label,
   Row,
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { updateUser } from "../Features/UserSlice";
 import ProfilePicture from "./ProfilePicture";
-import LocationControl from "./LocationControl";
+import Location from "./Location";
 
 const sameText = (firstValue, secondValue) =>
   (firstValue || "").toString().trim() ===
@@ -25,6 +23,9 @@ const Profile = () => {
   const [location, setlocation] = useState(user.location || "");
   const [latitude, setlatitude] = useState(user.latitude || "");
   const [longitude, setlongitude] = useState(user.longitude || "");
+  const [place, setplace] = useState(user.place || "");
+  const [country, setcountry] = useState(user.country || "");
+  const [accuracy, setaccuracy] = useState(user.accuracy || "");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,11 +37,20 @@ const Profile = () => {
     setlocation(user.location || "");
     setlatitude(user.latitude || "");
     setlongitude(user.longitude || "");
+    setplace(user.place || "");
+    setcountry(user.country || "");
+    setaccuracy(user.accuracy || "");
   }, [navigate, user]);
 
-  const handleProfileLocationChange = ({ latitude, longitude }) => {
-    setlatitude(latitude);
-    setlongitude(longitude);
+  const handleProfileLocationChange = (locationData) => {
+    setlatitude(locationData.latitude);
+    setlongitude(locationData.longitude);
+    setplace(locationData.place || "");
+    setcountry(locationData.country || "");
+    setaccuracy(locationData.accuracy || "");
+    if (locationData.location) {
+      setlocation(locationData.location);
+    }
   };
 
   const handleSaveProfile = async (event) => {
@@ -48,7 +58,10 @@ const Profile = () => {
     const profileUnchanged =
       sameText(location, user.location) &&
       sameText(latitude, user.latitude) &&
-      sameText(longitude, user.longitude);
+      sameText(longitude, user.longitude) &&
+      sameText(place, user.place) &&
+      sameText(country, user.country) &&
+      sameText(accuracy, user.accuracy);
 
     if (profileUnchanged) {
       alert("No changes have been made.");
@@ -62,6 +75,9 @@ const Profile = () => {
           location,
           latitude,
           longitude,
+          place,
+          country,
+          accuracy,
         })
       ).unwrap();
       alert("Changes have been made.");
@@ -127,18 +143,12 @@ const Profile = () => {
           <section className="contentBlock">
             <h2>User Location</h2>
             <Form onSubmit={handleSaveProfile}>
-              <FormGroup>
-                <Label for="profileLocation">Location</Label>
-                <input
-                  id="profileLocation"
-                  className="form-control"
-                  value={location}
-                  onChange={(e) => setlocation(e.target.value)}
-                />
-              </FormGroup>
-              <LocationControl
+              <Location
                 latitude={latitude}
                 longitude={longitude}
+                place={place}
+                country={country}
+                accuracy={accuracy}
                 onLocationChange={handleProfileLocationChange}
               />
               <Button color="primary" className="button" type="submit">

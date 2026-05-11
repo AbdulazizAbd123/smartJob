@@ -16,7 +16,7 @@ import { updateUser } from "../Features/UserSlice";
 import { getJobs } from "../Features/JobSlice";
 import { applyJob, getApplications } from "../Features/ApplicationSlice";
 import ProfilePicture from "./ProfilePicture";
-import LocationControl from "./LocationControl";
+import Location from "./Location";
 
 const sameText = (firstValue, secondValue) =>
   (firstValue || "").toString().trim() ===
@@ -40,6 +40,9 @@ const ApplicantPage = () => {
     location: "",
     latitude: "",
     longitude: "",
+    place: "",
+    country: "",
+    accuracy: "",
   });
   const [applicantView, setapplicantView] = useState("available");
 
@@ -66,6 +69,9 @@ const ApplicantPage = () => {
       location: user.location || "",
       latitude: user.latitude || "",
       longitude: user.longitude || "",
+      place: user.place || "",
+      country: user.country || "",
+      accuracy: user.accuracy || "",
     });
 
     return () => clearInterval(statusRefresh);
@@ -132,11 +138,11 @@ const ApplicantPage = () => {
     });
   };
 
-  const handleProfileLocationChange = ({ latitude, longitude }) => {
+  const handleProfileLocationChange = (locationData) => {
     setprofileData({
       ...profileData,
-      latitude,
-      longitude,
+      ...locationData,
+      location: locationData.location || profileData.location,
     });
   };
 
@@ -150,7 +156,10 @@ const ApplicantPage = () => {
       Number(profileData.experience || 0) === Number(user.experience || 0) &&
       sameText(profileData.location, user.location) &&
       sameText(profileData.latitude, user.latitude) &&
-      sameText(profileData.longitude, user.longitude);
+      sameText(profileData.longitude, user.longitude) &&
+      sameText(profileData.place, user.place) &&
+      sameText(profileData.country, user.country) &&
+      sameText(profileData.accuracy, user.accuracy);
 
     if (profileUnchanged) {
       alert("No changes have been made.");
@@ -167,6 +176,9 @@ const ApplicantPage = () => {
           latitude: profileData.latitude ? Number(profileData.latitude) : undefined,
           longitude: profileData.longitude
             ? Number(profileData.longitude)
+            : undefined,
+          accuracy: profileData.accuracy
+            ? Number(profileData.accuracy)
             : undefined,
         })
       ).unwrap();
@@ -299,24 +311,15 @@ const ApplicantPage = () => {
                     />
                   </FormGroup>
                 </Col>
-                <Col md={4}>
-                  <FormGroup>
-                    <Label for="applicantLocation">Location</Label>
-                    <input
-                      id="applicantLocation"
-                      name="location"
-                      className="figmaInput"
-                      value={profileData.location}
-                      onChange={handleProfileChange}
-                    />
-                  </FormGroup>
-                </Col>
               </Row>
               <Row>
                 <Col md={8}>
-                  <LocationControl
+                  <Location
                     latitude={profileData.latitude}
                     longitude={profileData.longitude}
+                    place={profileData.place}
+                    country={profileData.country}
+                    accuracy={profileData.accuracy}
                     onLocationChange={handleProfileLocationChange}
                   />
                 </Col>

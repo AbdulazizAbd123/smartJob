@@ -3,6 +3,9 @@ import axios from "axios";
 
 import * as ENV from "../config";
 
+const getErrorMessage = (error, fallbackMessage) =>
+  error.response?.data?.error || fallbackMessage;
+
 const initialState = {
   user: {},
   users: [],
@@ -21,7 +24,7 @@ export const registerUser = createAsyncThunk(
       const user = response.data.user; //retrieve the response from the server
       return user; //return the response from the server as payload to the thunk
     } catch (error) {
-      const errorMessage = error.response?.data?.error || "Registration failed";
+      const errorMessage = getErrorMessage(error, "Registration failed");
       alert(errorMessage);
       throw new Error(errorMessage);
     }
@@ -38,9 +41,10 @@ export const login = createAsyncThunk("users/login", async (userData) => {
     const user = response.data.user;
     return user;
   } catch (error) {
-    const errorMessage =
-      error.response?.data?.error ||
-      "Cannot connect to server. Start the server terminal first.";
+    const errorMessage = getErrorMessage(
+      error,
+      "Cannot connect to server. Start the server terminal first."
+    );
     alert(errorMessage);
     throw new Error(errorMessage);
   }
@@ -57,7 +61,9 @@ export const getUsers = createAsyncThunk("users/getUsers", async () => {
     const response = await axios.get(`${ENV.SERVER_URL}/getUsers`);
     return response.data.users;
   } catch (error) {
-    console.log(error);
+    const errorMessage = getErrorMessage(error, "Loading users failed");
+    alert(errorMessage);
+    throw new Error(errorMessage);
   }
 });
 
@@ -71,7 +77,7 @@ export const updateUser = createAsyncThunk(
       );
       return response.data.user;
     } catch (error) {
-      const errorMessage = error.response?.data?.error || "Update failed";
+      const errorMessage = getErrorMessage(error, "Update failed");
       alert(errorMessage);
       throw new Error(errorMessage);
     }
@@ -85,7 +91,9 @@ export const deleteUser = createAsyncThunk(
       await axios.delete(`${ENV.SERVER_URL}/deleteUser/${userId}`);
       return userId;
     } catch (error) {
-      console.log(error);
+      const errorMessage = getErrorMessage(error, "Deleting user failed");
+      alert(errorMessage);
+      throw new Error(errorMessage);
     }
   }
 );

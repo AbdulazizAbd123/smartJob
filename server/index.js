@@ -33,6 +33,11 @@ const removePassword = (user) => {
 
 const isEmpty = (value) => !value || value.toString().trim() === "";
 
+const sendServerError = (res, label, error) => {
+  console.error(`${label}:`, error.message);
+  res.status(500).json({ error: error.message || "An error occurred" });
+};
+
 const validateUserData = (data, isUpdate = false) => {
   const errors = [];
   const role = data.role || "applicant";
@@ -300,6 +305,20 @@ mongoose
   })
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
+app.get("/", (req, res) => {
+  res.send({
+    message: "Smart Job Tracker API is running.",
+    database: mongoose.connection.readyState === 1 ? "connected" : "not connected",
+  });
+});
+
+app.get("/health", (req, res) => {
+  res.send({
+    server: "running",
+    database: mongoose.connection.readyState === 1 ? "connected" : "not connected",
+  });
+});
+
 //api for saving data from register component to the users collection
 app.post("/registerUser", async (req, res) => {
   try {
@@ -339,7 +358,7 @@ app.post("/registerUser", async (req, res) => {
     await user.save();
     res.send({ user: removePassword(user), msg: "Added." });
   } catch (error) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Register error", error);
   }
 });
 
@@ -350,7 +369,7 @@ app.post("/login", async (req, res) => {
     const password = req.body.password;
     const user = await UserModel.findOne({ email: email });
     if (!user) {
-      return res.status(500).json({ error: "User not found." });
+      return res.status(404).json({ error: "User not found." });
     }
     if (user.isActive === false) {
       return res.status(401).json({ error: "User account is inactive." });
@@ -361,7 +380,7 @@ app.post("/login", async (req, res) => {
     }
     res.status(200).json({ user: removePassword(user), message: "Success." });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendServerError(res, "Login error", err);
   }
 });
 
@@ -378,7 +397,7 @@ app.get("/getUsers", async (req, res) => {
       .sort({ createdAt: -1 });
     res.send({ users: users });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Get users error", err);
   }
 });
 
@@ -413,7 +432,7 @@ app.put("/updateUser/:userId", async (req, res) => {
     }).select("-password");
     res.json({ user: updatedUser, msg: "Updated." });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Update user error", err);
   }
 });
 
@@ -428,7 +447,7 @@ app.delete("/deleteUser/:userId", async (req, res) => {
     await JobModel.deleteMany({ companyId: userId });
     res.json({ msg: "Deleted." });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Delete user error", err);
   }
 });
 
@@ -461,7 +480,7 @@ app.post("/saveJob", async (req, res) => {
     const jobWithCount = (await addJobApplicationCounts([job]))[0];
     res.send({ job: jobWithCount, msg: "Added." });
   } catch (error) {
-    res.status(500).json({ error: error.message || "An error occurred" });
+    sendServerError(res, "Save job error", error);
   }
 });
 
@@ -477,7 +496,7 @@ app.get("/getJobs", async (req, res) => {
     const countJob = await JobModel.countDocuments(filter);
     res.send({ jobs: jobsWithCounts, count: countJob });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Get jobs error", err);
   }
 });
 
@@ -512,7 +531,7 @@ app.put("/updateJob/:jobId", async (req, res) => {
     const jobWithCount = (await addJobApplicationCounts([updatedJob]))[0];
     res.json({ job: jobWithCount, msg: "Updated." });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Update job error", err);
   }
 });
 
@@ -524,7 +543,7 @@ app.delete("/deleteJob/:jobId", async (req, res) => {
     await ApplicationModel.deleteMany({ jobId: jobId });
     res.json({ msg: "Deleted." });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Delete job error", err);
   }
 });
 
@@ -569,7 +588,7 @@ app.post("/applyJob", async (req, res) => {
     await application.save();
     res.send({ application: application, msg: "Added." });
   } catch (error) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Apply job error", error);
   }
 });
 
@@ -588,7 +607,7 @@ app.get("/getApplications", async (req, res) => {
     });
     res.send({ applications: applications });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Get applications error", err);
   }
 });
 
@@ -619,7 +638,7 @@ app.put("/updateApplication/:applicationId", async (req, res) => {
     );
     res.json({ application: updatedApplication, msg: "Updated." });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Update application error", err);
   }
 });
 
@@ -630,7 +649,7 @@ app.delete("/deleteApplication/:applicationId", async (req, res) => {
     await ApplicationModel.findByIdAndDelete(applicationId);
     res.json({ msg: "Deleted." });
   } catch (err) {
-    res.status(500).json({ error: "An error occurred" });
+    sendServerError(res, "Delete application error", err);
   }
 });
 

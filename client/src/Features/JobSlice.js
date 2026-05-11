@@ -3,6 +3,9 @@ import axios from "axios";
 
 import * as ENV from "../config";
 
+const getErrorMessage = (error, fallbackMessage) =>
+  error.response?.data?.error || fallbackMessage;
+
 const initialState = {
   jobs: [],
   status: "",
@@ -16,7 +19,7 @@ export const saveJob = createAsyncThunk("jobs/saveJob", async (jobData) => {
     const job = response.data.job;
     return job; //Return the new job to Redux
   } catch (error) {
-    const errorMessage = error.response?.data?.error || "Saving job failed";
+    const errorMessage = getErrorMessage(error, "Saving job failed");
     alert(errorMessage);
     throw new Error(errorMessage);
   }
@@ -31,7 +34,9 @@ export const getJobs = createAsyncThunk("jobs/getJobs", async (companyId) => {
     const response = await axios.get(url);
     return response.data.jobs;
   } catch (error) {
-    console.log(error);
+    const errorMessage = getErrorMessage(error, "Loading jobs failed");
+    alert(errorMessage);
+    throw new Error(errorMessage);
   }
 });
 
@@ -45,7 +50,7 @@ export const updateJob = createAsyncThunk("jobs/updateJob", async (jobData) => {
     const job = response.data.job;
     return job;
   } catch (error) {
-    const errorMessage = error.response?.data?.error || "Updating job failed";
+    const errorMessage = getErrorMessage(error, "Updating job failed");
     alert(errorMessage);
     throw new Error(errorMessage);
   }
@@ -57,7 +62,9 @@ export const deleteJob = createAsyncThunk("jobs/deleteJob", async (jobId) => {
     await axios.delete(`${ENV.SERVER_URL}/deleteJob/${jobId}`);
     return jobId;
   } catch (error) {
-    console.log(error);
+    const errorMessage = getErrorMessage(error, "Deleting job failed");
+    alert(errorMessage);
+    throw new Error(errorMessage);
   }
 });
 

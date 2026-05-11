@@ -3,6 +3,9 @@ import axios from "axios";
 
 import * as ENV from "../config";
 
+const getErrorMessage = (error, fallbackMessage) =>
+  error.response?.data?.error || fallbackMessage;
+
 const initialState = {
   applications: [],
   status: "",
@@ -21,7 +24,7 @@ export const applyJob = createAsyncThunk(
       const application = response.data.application;
       return application;
     } catch (error) {
-      const errorMessage = error.response?.data?.error || "Application failed";
+      const errorMessage = getErrorMessage(error, "Application failed");
       alert(errorMessage);
       throw new Error(errorMessage);
     }
@@ -43,7 +46,9 @@ export const getApplications = createAsyncThunk(
       const response = await axios.get(url);
       return response.data.applications;
     } catch (error) {
-      console.log(error);
+      const errorMessage = getErrorMessage(error, "Loading applications failed");
+      alert(errorMessage);
+      throw new Error(errorMessage);
     }
   }
 );
@@ -60,7 +65,7 @@ export const updateApplication = createAsyncThunk(
       const application = response.data.application;
       return application;
     } catch (error) {
-      const errorMessage = error.response?.data?.error || "Update failed";
+      const errorMessage = getErrorMessage(error, "Update failed");
       alert(errorMessage);
       throw new Error(errorMessage);
     }
@@ -75,7 +80,9 @@ export const deleteApplication = createAsyncThunk(
       await axios.delete(`${ENV.SERVER_URL}/deleteApplication/${applicationId}`);
       return applicationId;
     } catch (error) {
-      console.log(error);
+      const errorMessage = getErrorMessage(error, "Deleting application failed");
+      alert(errorMessage);
+      throw new Error(errorMessage);
     }
   }
 );
